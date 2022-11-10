@@ -1,0 +1,473 @@
+openapi: 3.0.0
+info:
+    version: "1.0"
+    title: Shift Planner
+    description: "A specifiction of the API to be used between the frontend and the backend of the shift planner application"
+tags:
+    - name: "Shift"
+    - name: "Service"
+    - name: "Schedule"
+
+servers:
+    - url: https://localhost:{port}/api/ver{version}
+      variables:
+          port:
+              default: "8000"
+              description: "Localhost port"
+          version:
+              default: "1.0"
+              description: "API version"
+    - url: http://34.175.201.145/api/ver{version}
+      variables:
+          port:
+              default: "8000"
+              description: "Localhost port"
+          version:
+              default: "1.0"
+              description: "API version"
+
+components:
+    schemas:
+        workstation:
+            type: object
+            properties:
+                service:
+                    type: string
+                role:
+                    type: string
+        workstations:
+            type: array
+            items:
+                $ref: "#/components/schemas/workstation"
+        shift:
+            type: object
+            properties:
+                id:
+                    type: integer
+                workstation:
+                    type: integer
+                start_timestamp:
+                    type: string
+                number_of_workers:
+                    type: integer
+                    default: 1
+                    minimum: 1
+                duration:
+                    description: "Duration of the shift in minutes"
+                    type: integer
+                    minimum: 0
+                    maximum: 720
+            required:
+                - "workstation"
+                - "start_timestamp"
+                - "number_of_workers"
+                - "duration"
+        shifts:
+            type: array
+            items:
+                $ref: "#/components/schemas/shift"
+        staff:
+            type: object
+            properties:
+                name:
+                    type: string
+                email:
+                    type: string
+                staff_number:
+                    type: integer
+                service_manager:
+                    type: integer
+            required:
+                - "name"
+                - "email"
+                - "staff_number"
+                - "service_manager"
+        staffs:
+            type: array
+            items:
+                $ref: "#/components/schemas/staff"
+        workshiftAllocation:
+            allOf:
+                - $ref: "#/components/schemas/workshift"
+                - type: object
+                  properties:
+                      staff:
+                          type: array
+                          items:
+                              $ref: "#/components/schemas/staff"
+            required:
+                - "staff"
+        schedule:
+            type: object
+            properties:
+                service:
+                    type: string
+                name:
+                    type: string
+                shiftAllocations:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/workshiftAllocation"
+            required:
+                - "name"
+                - "shiftAllocations"
+        schedules:
+            type: array
+            items:
+                $ref: "#/components/schemas/schedule"
+    parameters:
+        workstation_id:
+            in: path
+            name: workstation_id
+            description: "Identifier of the workstation"
+            schema:
+                type: integer
+            required: true
+        shift_id:
+            in: path
+            name: shift_id
+            description: "Identifier of the shift"
+            schema:
+                type: integer
+            required: true
+        shift_workstation_query:
+            in: query
+            name: workstation
+            schema:
+                type: integer
+            description: "Identifier of the workstation, allowing to get shifts of a specific workstation"
+            required: false
+        staff_id:
+            in: path
+            name: staff_id
+            description: "Identifier of the staff"
+            schema:
+                type: integer
+            required: true
+        schedule_id:
+            in: path
+            name: schedule_id
+            description: "Identifier of the schedule"
+            schema:
+                type: string
+            required: true
+
+    responses:
+        404NotFound:
+            description: "Page not found"
+
+paths:
+    /workstation:
+        get:
+            summary: "List workstations"
+            description: "List workstations"
+            tags:
+                - "Service"
+            parameters:
+                - in: query
+                  name: service
+                  description: "Filter by service"
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: "Successfully fetched workstations"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/workstations"
+
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        post:
+            summary: "Create a new workstation"
+            description: "Create a new workstation"
+            tags:
+                - "Service"
+
+            requestBody:
+                description: "Data for workstation creation"
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/workstation"
+
+            responses:
+                "200":
+                    description: "Successfully added workstation"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/workstation"
+
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+    /workstation/{workstation_id}:
+        get:
+            summary: "Get a workstation"
+            description: "Get a workstation"
+            parameters:
+                - $ref: "#/components/parameters/workstation_id"
+            tags:
+                - "Service"
+
+            responses:
+                "200":
+                    description: "Successfully fetched workstation"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/workstation"
+
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        put:
+            summary: "Update a workstation"
+            description: "Update a workstation"
+            parameters:
+                - $ref: "#/components/parameters/workstation_id"
+            tags:
+                - "Service"
+
+            requestBody:
+                description: "Data for workstation update"
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/workstation"
+
+            responses:
+                "200":
+                    description: "Successfully updated workstation"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/workstation"
+
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        delete:
+            summary: "Delete a workstation"
+            description: "Delete a workstation"
+            parameters:
+                - $ref: "#/components/parameters/workstation_id"
+            tags:
+                - "Service"
+
+            responses:
+                "200":
+                    description: "Successfully deleted workstation"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/workstation"
+
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+
+    /shift:
+        get:
+            summary: "List shifts"
+            description: "List shifts"
+            parameters:
+                - $ref: "#/components/parameters/shift_workstation_query"
+            tags:
+                - "Shift"
+            responses:
+                "200":
+                    description: "Successfully fetched shifts"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/shifts"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        post:
+            summary: "Create a new shift"
+            description: "Creates a new shift"
+            tags:
+                - "Shift"
+            requestBody:
+                description: "Data for shift creation"
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/shift"
+            responses:
+                "200":
+                    description: "Shift created successfully"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+
+    /shift/{shift_id}:
+        get:
+            summary: "Get a shift"
+            description: "Get a shift"
+            parameters:
+                - $ref: "#/components/parameters/shift_id"
+            tags:
+                - "Shift"
+            responses:
+                "200":
+                    description: "Successfully fetched shift"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/shift"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        put:
+            summary: "Update a shift"
+            description: "Updates a shift"
+            parameters:
+                - $ref: "#/components/parameters/shift_id"
+            tags:
+                - "Shift"
+            requestBody:
+                description: "Data for shift update"
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/shift"
+            responses:
+                "200":
+                    description: "shift Updated successfully"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        delete:
+            summary: "Delete a shift"
+            description: "Deletes a shift"
+            parameters:
+                - $ref: "#/components/parameters/shift_id"
+            tags:
+                - "Shift"
+            responses:
+                "200":
+                    description: "Shift deleted successfully"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+
+    /schedule:
+        get:
+            summary: "Get list of schedules"
+            description: "Gets all available schedules from a given service"
+            parameters:
+                - $ref: "#/components/parameters/service_id"
+            tags:
+                - "Schedule"
+            responses:
+                "200":
+                    description: "Successfully fetched schedules data"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/schedules"
+
+    /schedule/{schedule_id}:
+        get:
+            summary: "Get a schedule"
+            description: "Get a schedule from a given service"
+            parameters:
+                - $ref: "#/components/parameters/service_id"
+                - $ref: "#/components/parameters/schedule_id"
+            tags:
+                - "Schedule"
+            responses:
+                "200":
+                    description: "Successfully fetched schedule data"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/schedule"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+
+    /staff:
+        get:
+            summary: "List staffs"
+            description: "List staffs"
+            tags:
+                - "Staff"
+            responses:
+                "200":
+                    description: "Successfully fetched staffs"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/staffs"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        post:
+            summary: "Create a new staff"
+            description: "Create a new staff"
+            tags:
+                - "Staff"
+            requestBody:
+                description: "Data for staff creation"
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/staff"
+            responses:
+                "200":
+                    description: "Successfully added staff"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/staff"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+
+    /staff/{staff_id}:
+        get:
+            summary: "Get a staff"
+            description: "Get a staff"
+            parameters:
+                - $ref: "#/components/parameters/staff_id"
+            tags:
+                - "Staff"
+            responses:
+                "200":
+                    description: "Successfully fetched staff"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/staff"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        put:
+            summary: "Update a staff"
+            description: "Update a staff"
+            parameters:
+                - $ref: "#/components/parameters/staff_id"
+            tags:
+                - "Staff"
+            requestBody:
+                description: "Data for staff update"
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/staff"
+            responses:
+                "200":
+                    description: "Successfully updated staff"
+                "404":
+                    $ref: "#/components/responses/404NotFound"
+        delete:
+            summary: "Delete a staff"
+            description: "Delete a staff"
+            parameters:
+                - $ref: "#/components/parameters/staff_id"
+            tags:
+                - "Staff"
+            responses:
+                "200":
+                    description: "Successfully deleted staff"
+                "404":
+                    $ref: "#/components/responses/404NotFound"

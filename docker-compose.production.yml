@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+    django:
+        environment:
+            - DJANGO_ENV=production
+    react:
+        build:
+            dockerfile: Dockerfile.prod
+            args:
+                - REACT_APP_BACKEND_HOST=${MY_IP}
+        ports:
+            - 80:3000
+        command: serve -s build

@@ -1,0 +1,490 @@
+[
+    {
+        "model": "shiftplanner.ServiceManager",
+        "pk": 1,
+        "fields": {
+            "email": "servico@ds.pt",
+            "name": "Ortopedia"
+        }
+    },
+    {
+        "model": "shiftplanner.WorkStation",
+        "pk": 1,
+        "fields": {
+            "role": "skill-1",
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Shift",
+        "pk": 1,
+        "fields": {
+            "start_timestamp": "2022-01-01 08:00:00",
+            "duration": "06:00:00",
+            "number_of_workers": 4,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Shift",
+        "pk": 2,
+        "fields": {
+            "start_timestamp": "2022-01-01 14:00:00",
+            "duration": "06:00:00",
+            "number_of_workers": 3,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Shift",
+        "pk": 3,
+        "fields": {
+            "start_timestamp": "2022-01-01 20:00:00",
+            "duration": "12:00:00",
+            "number_of_workers": 2,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Shift",
+        "pk": 4,
+        "fields": {
+            "start_timestamp": "2022-01-01 08:00:00",
+            "duration": "12:00:00",
+            "number_of_workers": 5,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 1,
+        "fields": {
+            "name": "A",
+            "email": "a@example.com",
+            "staff_number": 1,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 1,
+        "fields": {
+            "staff": 1,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 2,
+        "fields": {
+            "name": "B",
+            "email": "b@example.com",
+            "staff_number": 2,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 2,
+        "fields": {
+            "staff": 2,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 3,
+        "fields": {
+            "name": "C",
+            "email": "c@example.com",
+            "staff_number": 3,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 3,
+        "fields": {
+            "staff": 3,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 4,
+        "fields": {
+            "name": "D",
+            "email": "d@example.com",
+            "staff_number": 4,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 4,
+        "fields": {
+            "staff": 4,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 5,
+        "fields": {
+            "name": "E",
+            "email": "e@example.com",
+            "staff_number": 5,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 5,
+        "fields": {
+            "staff": 5,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 6,
+        "fields": {
+            "name": "F",
+            "email": "f@example.com",
+            "staff_number": 6,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 6,
+        "fields": {
+            "staff": 6,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 7,
+        "fields": {
+            "name": "G",
+            "email": "g@example.com",
+            "staff_number": 7,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 7,
+        "fields": {
+            "staff": 7,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 8,
+        "fields": {
+            "name": "H",
+            "email": "h@example.com",
+            "staff_number": 8,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 8,
+        "fields": {
+            "staff": 8,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 9,
+        "fields": {
+            "name": "I",
+            "email": "i@example.com",
+            "staff_number": 9,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 9,
+        "fields": {
+            "staff": 9,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 10,
+        "fields": {
+            "name": "J",
+            "email": "j@example.com",
+            "staff_number": 10,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 10,
+        "fields": {
+            "staff": 10,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 11,
+        "fields": {
+            "name": "K",
+            "email": "k@example.com",
+            "staff_number": 11,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 11,
+        "fields": {
+            "staff": 11,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 12,
+        "fields": {
+            "name": "L",
+            "email": "l@example.com",
+            "staff_number": 12,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 12,
+        "fields": {
+            "staff": 12,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 13,
+        "fields": {
+            "name": "M",
+            "email": "m@example.com",
+            "staff_number": 13,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 13,
+        "fields": {
+            "staff": 13,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 14,
+        "fields": {
+            "name": "N",
+            "email": "n@example.com",
+            "staff_number": 14,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 14,
+        "fields": {
+            "staff": 14,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 15,
+        "fields": {
+            "name": "O",
+            "email": "o@example.com",
+            "staff_number": 15,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 15,
+        "fields": {
+            "staff": 15,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 16,
+        "fields": {
+            "name": "P",
+            "email": "p@example.com",
+            "staff_number": 16,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 16,
+        "fields": {
+            "staff": 16,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 17,
+        "fields": {
+            "name": "Q",
+            "email": "q@example.com",
+            "staff_number": 17,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 17,
+        "fields": {
+            "staff": 17,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 18,
+        "fields": {
+            "name": "R",
+            "email": "r@example.com",
+            "staff_number": 18,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 18,
+        "fields": {
+            "staff": 18,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 19,
+        "fields": {
+            "name": "S",
+            "email": "s@example.com",
+            "staff_number": 19,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 19,
+        "fields": {
+            "staff": 19,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 20,
+        "fields": {
+            "name": "T",
+            "email": "t@example.com",
+            "staff_number": 20,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 20,
+        "fields": {
+            "staff": 20,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 21,
+        "fields": {
+            "name": "U",
+            "email": "u@example.com",
+            "staff_number": 21,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 21,
+        "fields": {
+            "staff": 21,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 22,
+        "fields": {
+            "name": "V",
+            "email": "v@example.com",
+            "staff_number": 22,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 22,
+        "fields": {
+            "staff": 22,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 23,
+        "fields": {
+            "name": "X",
+            "email": "x@example.com",
+            "staff_number": 23,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 23,
+        "fields": {
+            "staff": 23,
+            "workstation": 1
+        }
+    },
+    {
+        "model": "shiftplanner.Staff",
+        "pk": 24,
+        "fields": {
+            "name": "Z",
+            "email": "z@example.com",
+            "staff_number": 24,
+            "service_manager": 1
+        }
+    },
+    {
+        "model": "shiftplanner.CanWork",
+        "pk": 24,
+        "fields": {
+            "staff": 24,
+            "workstation": 1
+        }
+    }
+]

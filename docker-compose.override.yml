@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+    django:
+        environment:
+            - DJANGO_ENV=development
+    react:
+        ports:
+            - 3000:3000
+        command: npm start
+        environment:
+            - WATCHPACK_POLLING=true

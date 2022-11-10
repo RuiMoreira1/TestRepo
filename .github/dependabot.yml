@@ -24,7 +24,7 @@ updates:
     target-branch: "master"
     reviewers:
       - "RuiMoreira1"
-  - package-ecosystem: "composer"
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"

@@ -5,12 +5,12 @@
 
 version: 2
 updates:
-  - package-ecosystem: "Backend" # See documentation for possible values
-    directory: "backend/requirements.txt" # Location of package manifests
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "frontend/" # Location of package manifests
     schedule:
       interval: "daily"
-  - package-ecosystem: "Frontend" # See documentation for possible values
-    directory: "frontend/package.json" # Location of package manifests
+  - package-ecosystem: "pip" # See documentation for possible values
+    directory: "backend/" # Location of package manifests
     schedule:
       interval: "daily"
      
